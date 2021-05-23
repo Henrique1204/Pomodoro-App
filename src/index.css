@@ -1,10 +1,69 @@
 *, *::after, *::before {
   margin: 0;
   padding: 0;
-  outline: none;
   box-sizing: border-box;
+  outline: none;
 }
 
 body {
   font-family: sans-serif;
+  line-height: 1.5;
+  background-color: #41E1BA;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.working {
+  background-color: #EF5D50;
+}
+
+.hidden {
+  display: none;
+}
+
+.container {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.pomodoro {
+  padding: 20px;
+  margin: 50px 20px;
+  border-radius: 4px;
+  background-color: #FFF;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.pomodoro h2 {
+  font-size: 24px;
+  text-align: center;
+}
+
+.pomodoro .timer {
+  font-size: 6rem;
+  text-align: center;
+}
+
+.pomodoro .controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.pomodoro button {
+  padding: 10px 25px;
+  border: none;
+  margin: 20px auto;
+  background-color: #41E1BA;
+  color: #000;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.working .pomodoro button {
+  background-color: #EF5D50;
+  color: #FFF;
+}
+
+.pomodoro .details {
+  margin: 20px 0;
 }

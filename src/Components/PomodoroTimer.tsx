@@ -14,6 +14,7 @@ const pomodoroTimer = (props: Props): JSX.Element => {
   const [mainTime, setMainTime] = React.useState(props.pomodoroTimer);
   const [timeCouting, setTimeCouting] = React.useState(false);
   const [working, setWorking] = React.useState(false);
+  const [resting, setResting] = React.useState(false);
 
   useInterval(
     () => {
@@ -25,10 +26,23 @@ const pomodoroTimer = (props: Props): JSX.Element => {
   const configureWorking = () => {
     setTimeCouting(true);
     setWorking(true);
+    setResting(false);
+
+    setMainTime(props.pomodoroTimer);
+  };
+
+  const configureResting = (long: boolean) => {
+    setTimeCouting(true);
+    setResting(true);
+    setWorking(false);
+
+    if (long) setMainTime(props.longRestTimer);
+    else setMainTime(props.shortRestTimer);
   };
 
   React.useEffect(() => {
     if (working) document.body.classList.add('working');
+    if (resting) document.body.classList.remove('working');
   }, [working]);
 
   return (
@@ -38,8 +52,11 @@ const pomodoroTimer = (props: Props): JSX.Element => {
 
       <div className="controls">
         <Button text="Work" onClick={configureWorking} />
-        <Button text="teste" onClick={() => console.log('Oi')} />
+
+        <Button text="Rest" onClick={() => configureResting(false)} />
+
         <Button
+          className={!working && !resting ? 'hidden' : ''}
           text={timeCouting ? 'Pause' : 'Play'}
           onClick={() => setTimeCouting((valueState) => !valueState)}
         />
